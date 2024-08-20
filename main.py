@@ -34,15 +34,15 @@ def lines_drawn(img, lines, color=[255, 0, 0], thickness=6):
             elif slope < -0.4:
                 slope_l.append(slope)
                 lane_l.append(line)
-        #2
+      
         img.shape[0] = min(y1,y2,img.shape[0])
     
-    # to prevent errors in challenge video from dividing by zero
+   
     if((len(lane_l) == 0) or (len(lane_r) == 0)):
         print ('no lane detected')
         return 1
         
-    #3
+
     slope_mean_l = np.mean(slope_l,axis =0)
     slope_mean_r = np.mean(slope_r,axis =0)
     mean_l = np.mean(np.array(lane_l),axis=0)
@@ -57,7 +57,7 @@ def lines_drawn(img, lines, color=[255, 0, 0], thickness=6):
     x1_r = int((img.shape[0] - mean_r[0][1] - (slope_mean_r * mean_r[0][0]))/slope_mean_r)
     x2_r = int((img.shape[0] - mean_r[0][1] - (slope_mean_r * mean_r[0][0]))/slope_mean_r)
     
-    #6
+
     if x1_l > x1_r:
         x1_l = int((x1_l+x1_r)/2)
         x1_r = x1_l
